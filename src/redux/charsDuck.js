@@ -13,6 +13,7 @@ const GET_CHARACTERS = 'GET_CHARACTERS';
 const GET_CHARACTERS_SUCCES = 'GET_CHARACTERS_SUCCES';
 const GET_CHARACTERS_ERROR = 'GET_CHARACTERS_ERROR';
 
+const REMOVE_CHARACTER = 'REMOVE_CHARACTER';
 
 // reducer
 export default function reducer(state = initialData, action){
@@ -23,7 +24,9 @@ export default function reducer(state = initialData, action){
             return {...state, array: action.payload, fetching: false};
         case GET_CHARACTERS_ERROR:
             return {...state, fetching: false, error: action.payload};
-            default:
+        case REMOVE_CHARACTER:
+            return {...state, array: action.payload};
+        default:
             return state;
     }
 };
@@ -47,4 +50,13 @@ export const getCharactersAction = () => (dispatch, getState) => {
             })
         })
 } 
+
+export const removeCharacterAction = () => (dispatch, getState) => {
+    let { array } = getState().characters; //getState me retorna un arreglo de todo el store
+    array.shift(); //Elimino el primer elemento del array
+    dispatch({
+        type: REMOVE_CHARACTER,
+        payload: [...array], //Devuelvo un nuevo array
+    })
+}
 

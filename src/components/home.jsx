@@ -2,13 +2,14 @@ import React from 'react';
 import Card from './card';
 import '../assets/styles/home.css';
 import { connect } from 'react-redux'; //Conecta nuestro componente con redux
+import {removeCharacterAction} from '../redux/charsDuck';
 
-const Home = ({ chars }) => {
+const Home = ({ chars, removeChar }) => {
 
     const renderChar = () => {
         let char = chars[0];
         return(
-            <Card {...char}/>
+            <Card leftClick={removeChar} {...char}/>
         )
     }
 
@@ -29,7 +30,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, null)(Home);
+//El connect se encarga de pasarle el dispatch y getState, esa es la ventaja de que si lo hacemos manual como en store.js
+const mapDispatchToProps = {
+    removeChar: removeCharacterAction,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 //El connect tiene dos funciones
 //Pedir datos que ya tiene el store
 
