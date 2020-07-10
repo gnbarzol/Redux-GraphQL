@@ -11,7 +11,7 @@ const onClick = (text) => {
     return () => console.log(text);
 }
 
-const Card = ({name, image, rightClick, leftClick}) => {
+const Card = ({name, image, rightClick, leftClick, fav}) => {
     return (
         <div className='container'>
             <div className='card'>
@@ -19,7 +19,7 @@ const Card = ({name, image, rightClick, leftClick}) => {
                 <p className='name'>
                     {name}
                 </p>
-                <div className='actions'>
+                { !fav && <div className='actions'>
                     <div
                         onClick={leftClick || onClick('left')}
                         className='left'>
@@ -37,6 +37,7 @@ const Card = ({name, image, rightClick, leftClick}) => {
                         />
                     </div>
                 </div>
+                }
             </div>
         </div>
     )

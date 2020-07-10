@@ -5,6 +5,7 @@ const initialData = {
     fetching: false,
     array: [],
     current: {},
+    favorites: [],
 }
 
 const URL = "https://rickandmortyapi.com/api/character";
@@ -14,6 +15,8 @@ const GET_CHARACTERS_SUCCES = 'GET_CHARACTERS_SUCCES';
 const GET_CHARACTERS_ERROR = 'GET_CHARACTERS_ERROR';
 
 const REMOVE_CHARACTER = 'REMOVE_CHARACTER';
+
+const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
 
 // reducer
 export default function reducer(state = initialData, action){
@@ -26,6 +29,8 @@ export default function reducer(state = initialData, action){
             return {...state, fetching: false, error: action.payload};
         case REMOVE_CHARACTER:
             return {...state, array: action.payload};
+        case ADD_TO_FAVORITE:
+            return {...state, ...action.payload};
         default:
             return state;
     }
@@ -60,3 +65,12 @@ export const removeCharacterAction = () => (dispatch, getState) => {
     })
 }
 
+export const addFavoriteAction = () => (dispatch, getState) => {
+    let { array, favorites } = getState().characters;
+    let character = array.shift();
+    favorites.push(character);
+    dispatch({
+        type: ADD_TO_FAVORITE,
+        payload: { array: [...array], favorites: [...favorites] },
+    })
+}
