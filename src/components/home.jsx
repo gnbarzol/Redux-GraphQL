@@ -1,40 +1,15 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 import Card from './card';
 import '../assets/styles/home.css';
+import { connect } from 'react-redux'; //Conecta nuestro componente con redux
 
-let URL = "https://rickandmortyapi.com/api";
-
-const Home = () => {
-
-    const [chars, setChars] = useState([]);
-
-    useEffect(()=>{
-        getCharacters();
-    }, []);
-
-    const nextChar = () => {
-        chars.shift(); //Elimina el primer elemento del array
-        if(!chars.length){
-            //Obtener mas personajes
-        }
-        setChars([...chars]);
-    }
+const Home = ({ chars }) => {
 
     const renderChar = () => {
         let char = chars[0];
         return(
-            <Card leftClick={nextChar} {...char}/>
+            <Card {...char}/>
         )
-    }
-
-    const getCharacters = () => {
-        fetch(`${URL}/character`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setChars(data.results);
-            })
     }
 
     return (
@@ -47,4 +22,15 @@ const Home = () => {
     )
 }
 
-export default Home;
+//Me retorna props al componente
+const mapStateToProps = (state) => {
+    return {
+        chars: state.characters.array,
+    }
+};
+
+export default connect(mapStateToProps, null)(Home);
+//El connect tiene dos funciones
+//Pedir datos que ya tiene el store
+
+//Despachar una accion
