@@ -1,7 +1,15 @@
 import React from 'react'
 import '../assets/styles/login.css';
+import { connect } from 'react-redux';
+import {doGoogleLoginAction} from '../redux/userDuck';
 
-const Login = () => {
+const Login = ({ fetching, doGoogleLoginAction }) => {
+
+    const doLogin = () => {
+        doGoogleLoginAction();
+    }
+    
+    if (fetching) return <h2>Esperando inicio con Google...</h2>;
     return (
         <div className='container'>
             <h1>
@@ -10,7 +18,7 @@ const Login = () => {
             <h1>
                 Cierra tu sesión
             </h1>
-            <button>
+            <button onClick={doLogin}>
                 Iniciar
             </button>
             <button>
@@ -20,4 +28,14 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = ({ user }) => {
+    return {
+        fetching: user.fetching,
+    }
+}
+
+const mapDispatchToProps = {
+    doGoogleLoginAction,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
