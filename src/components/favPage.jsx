@@ -2,7 +2,7 @@ import React from 'react'
 import Card from './card';
 import '../assets/styles/favPage.css';
 
-const FavPage = ({ characters = [0,0]}) => {
+const FavPage = ({ characters = [0]}) => {
     const renderCharacter = (char, i) => {
         return (
             <Card key={i} />

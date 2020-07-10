@@ -4,12 +4,18 @@ import {BrowserRouter} from 'react-router-dom';
 import './assets/styles/index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import 'font-awesome/css/font-awesome.css'
+import 'font-awesome/css/font-awesome.css';
+import { Provider } from 'react-redux';
+import generateStore from './redux/store';
+
+let store = generateStore();
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store} >
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>  
+  </Provider>,
   document.getElementById('root')
 );
 

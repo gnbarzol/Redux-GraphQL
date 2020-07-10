@@ -38,7 +38,7 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <h2>Personajes de Rick y Morty</h2>
             <div>
                 {renderChar()}
