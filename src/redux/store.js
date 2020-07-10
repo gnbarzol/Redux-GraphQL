@@ -1,10 +1,12 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
-import userReducer from './userDuck'; //Como esta export default le puedo poner cualquier nombre, en este caso userReducer
 import thunk from 'redux-thunk'; //Para hacer consumos al backend
+import userReducer from './userDuck'; //Como esta export default le puedo poner cualquier nombre, en este caso userReducer
+import charsReducer, {getCharactersAction} from './charsDuck';
 
 //Para tener un solo reducer que sera la combinacion de muchos
 let roorReducer = combineReducers({
     user: userReducer,
+    characters: charsReducer,
 });
 
 //Pregunta si el navegador soporta las herramientas de desarrollo
@@ -17,5 +19,8 @@ export default function generateStore() {
         roorReducer, 
         composeEnhancers(applyMiddleware(thunk)),
     );
+
+    //Como yo quiero llamar un action por defecto en especifico
+    getCharactersAction()(store.dispatch, store.getState);
     return store;
 }
