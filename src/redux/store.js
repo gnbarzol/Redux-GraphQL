@@ -1,6 +1,6 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'; //Para hacer consumos al backend
-import userReducer from './userDuck'; //Como esta export default le puedo poner cualquier nombre, en este caso userReducer
+import userReducer, {restoreSessionAction} from './userDuck'; //Como esta export default le puedo poner cualquier nombre, en este caso userReducer
 import charsReducer, {getCharactersAction} from './charsDuck';
 
 //Para tener un solo reducer que sera la combinacion de muchos
@@ -22,5 +22,6 @@ export default function generateStore() {
 
     //Como yo quiero llamar un action por defecto en especifico
     getCharactersAction()(store.dispatch, store.getState);
+    restoreSessionAction()(store.dispatch);
     return store;
 }

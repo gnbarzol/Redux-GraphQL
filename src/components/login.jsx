@@ -1,9 +1,9 @@
 import React from 'react'
 import '../assets/styles/login.css';
 import { connect } from 'react-redux';
-import {doGoogleLoginAction} from '../redux/userDuck';
+import {doGoogleLoginAction, logOutAction} from '../redux/userDuck';
 
-const Login = ({ fetching, doGoogleLoginAction }) => {
+const Login = ({ fetching , loggedIn, displayName, photoURL , doGoogleLoginAction, logOutAction }) => {
 
     const doLogin = () => {
         doGoogleLoginAction();
@@ -12,30 +12,31 @@ const Login = ({ fetching, doGoogleLoginAction }) => {
     if (fetching) return <h2>Esperando inicio con Google...</h2>;
     return (
         <div className='container'>
-            <h1>
-                Inicia Sesión con Google
-            </h1>
-            <h1>
-                Cierra tu sesión
-            </h1>
-            <button onClick={doLogin}>
-                Iniciar
-            </button>
-            <button>
-                Cerrar Sesión
-            </button>
+            {loggedIn?
+                (<h1>{displayName}</h1>) :
+                (<h1>Inicia Sesión con Google</h1>)
+            }
+            {loggedIn && <img src={photoURL} height='150' alt='userPhoto' ></img>}
+            {loggedIn?
+                <button onClick={logOutAction}>Cerrar Sesión</button> :
+                <button onClick={doLogin}>Iniciar</button>
+            }
         </div>
     )
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user: {fetching, loggedIn, displayName, photoURL} }) => {
     return {
-        fetching: user.fetching,
+        fetching,
+        loggedIn,
+        displayName,
+        photoURL,
     }
 }
 
 const mapDispatchToProps = {
     doGoogleLoginAction,
+    logOutAction,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

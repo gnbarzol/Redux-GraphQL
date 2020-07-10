@@ -18,4 +18,8 @@ export const loginWithGoogle = () => {
     let provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider)
         .then(snap => snap.user)
-} 
+};
+
+export const signOutGoogle = () => {
+  firebase.auth().signOut();
+}
