@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {updateFavs} from '../firebase';
+import {updateFavs, getFavs} from '../firebase';
 
 // Constanst
 const initialData = {
@@ -19,6 +19,13 @@ const REMOVE_CHARACTER = 'REMOVE_CHARACTER';
 
 const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
 
+const GET_FAVS = 'GET_FAVS';
+const GET_FAVS_SUCCESS = 'GET_FAVS_SUCCESS';
+const GET_FAVS_ERROR = 'GET_FAVS_ERROR';
+
+const CLEAR_FAVS = 'CLEAR_FAVS';
+
+
 // reducer
 export default function reducer(state = initialData, action){
     switch(action.type){
@@ -27,15 +34,27 @@ export default function reducer(state = initialData, action){
         case GET_CHARACTERS_SUCCES:
             return {...state, array: action.payload, fetching: false};
         case GET_CHARACTERS_ERROR:
-            return {...state, fetching: false, error: action.payload};
+            return {...state, fetching: false, errChars: action.payload};
         case REMOVE_CHARACTER:
             return {...state, array: action.payload};
         case ADD_TO_FAVORITE:
             return {...state, ...action.payload};
+        case GET_FAVS:
+            return {...state, fetching: true};
+        case GET_FAVS_SUCCESS:
+            return {...state, fetching: false, favorites: action.payload};
+        case GET_FAVS_ERROR:
+            return {...state, fetching: false, errFavs: action.payload};
+        case CLEAR_FAVS:
+            return {...initialData};
         default:
             return state;
     }
 };
+// Axiliar
+const saveStorageFavs = (favs) => {
+    localStorage.favs = JSON.stringify(favs);
+}
 
 // actions (thunks)
 export const getCharactersAction = () => (dispatch, getState) => {
@@ -72,9 +91,51 @@ export const addFavoriteAction = () => (dispatch, getState) => {
     let { uid } = state.user;
     let character = array.shift();
     favorites.push(character);
+    //Guarda los favs en la db
     updateFavs(favorites, uid);
+    saveStorageFavs(favorites);
     dispatch({
         type: ADD_TO_FAVORITE,
         payload: { array: [...array], favorites: [...favorites] },
+    })
+}
+
+export const retrieveFavs = () => (dispatch, getState) => {
+    dispatch({
+        type: GET_FAVS,
+    })
+    let { uid } = getState().user;
+    return getFavs(uid)
+        .then((array) => {
+            dispatch({
+                type: GET_FAVS_SUCCESS,
+                payload: [...array],
+            })
+            saveStorageFavs(array);
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_FAVS_ERROR,
+                payload: err.message,
+            })
+        })
+}
+
+//Recuperar favoritos de localStorage
+export const restoreFavsAction = () => (dispatch) => {
+    let favs = localStorage.getItem('favs');
+    favs = JSON.parse(favs);
+    if(favs){
+        dispatch({
+            type: GET_FAVS_SUCCESS,
+            payload: favs,
+        })
+    }
+}
+
+//Eliminar favs 
+export const clearFavs = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_FAVS,
     })
 }

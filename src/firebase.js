@@ -26,6 +26,16 @@ export const signOutGoogle = () => {
 
 let db = firebase.firestore().collection('favs');
 
+//Obtener los personajes favoritos
+export const getFavs = (uid) => {
+  return db.doc(uid).get()
+    .then(snap => {
+      return snap.data().array
+    })
+}
+
+//Guarda los personajes favoritos
 export const updateFavs = (array, uid) => {
   return db.doc(uid).set({array}); //set debe recibir un objeto
 }
+

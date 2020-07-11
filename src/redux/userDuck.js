@@ -1,4 +1,5 @@
 import { loginWithGoogle, signOutGoogle } from '../firebase';
+import { getCharactersAction, retrieveFavs, clearFavs } from './charsDuck';
 
 // Constanst
 const initialData = {
@@ -50,6 +51,11 @@ export const doGoogleLoginAction = () => (dispatch, getState) => {
                 },
             });
             saveStorage(getState().user);
+            //Obtiene los personajes
+            getCharactersAction()(dispatch, getState);
+            //Llamamos a este action cuando el user se loggee, el cual recupera los favs de la db
+            retrieveFavs()(dispatch, getState);
+
         })
         .catch(err => {
             dispatch({
@@ -71,7 +77,7 @@ export const restoreSessionAction = () => (dispatch) => {
     }
 }
 
-export const logOutAction = () => (dispatch, getState) => {
+export const logOutAction = () => (dispatch) => {
     //Cerramos sesion en firebase
     signOutGoogle();
     dispatch({
@@ -79,4 +85,8 @@ export const logOutAction = () => (dispatch, getState) => {
     })
     //Eliminamos al user del localStorage
     localStorage.removeItem('user');
+    localStorage.removeItem('favs');
+
+    //Limpia el state
+    clearFavs()(dispatch);
 }

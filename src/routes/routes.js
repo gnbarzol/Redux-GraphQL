@@ -17,7 +17,7 @@ const Routes = ({loggedIn}) => {
     return (
     // <BrowserRouter>
         <Switch>
-            <Route exact path='/' component={Home} loggedIn={loggedIn}/>
+            <PrivateRoute exact path='/' component={Home} loggedIn={loggedIn}/>
             <PrivateRoute path='/favs' component={FavPage} loggedIn={loggedIn}/>
             <Route path='/login' component={Login}/>
         </Switch>
