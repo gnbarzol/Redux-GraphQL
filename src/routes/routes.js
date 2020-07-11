@@ -7,13 +7,11 @@ import Login from '../components/login';
 
 const Routes = () => {
     return (
-    // <BrowserRouter>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/favs' component={FavPage}/>
             <Route exact path='/login' component={Login}/>
         </Switch>
-    // </BrowserRouter>
 )}
 
 export default Routes;
