@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/https//gnbarzol.github.io/Redux-GraphQL/static/css/main.d8cfff35.chunk.css",
-    "main.js": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/main.8baeb4c0.chunk.js",
-    "main.js.map": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/main.8baeb4c0.chunk.js.map",
-    "runtime-main.js": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/runtime-main.37c450be.js",
-    "runtime-main.js.map": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/runtime-main.37c450be.js.map",
-    "static/css/2.54693e18.chunk.css": "/https//gnbarzol.github.io/Redux-GraphQL/static/css/2.54693e18.chunk.css",
-    "static/js/2.ab24bad5.chunk.js": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/2.ab24bad5.chunk.js",
-    "static/js/2.ab24bad5.chunk.js.map": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/2.ab24bad5.chunk.js.map",
-    "index.html": "/https//gnbarzol.github.io/Redux-GraphQL/index.html",
-    "precache-manifest.4199ada1ecc76eb1c20a67ea97ebb811.js": "/https//gnbarzol.github.io/Redux-GraphQL/precache-manifest.4199ada1ecc76eb1c20a67ea97ebb811.js",
-    "service-worker.js": "/https//gnbarzol.github.io/Redux-GraphQL/service-worker.js",
-    "static/css/2.54693e18.chunk.css.map": "/https//gnbarzol.github.io/Redux-GraphQL/static/css/2.54693e18.chunk.css.map",
-    "static/css/main.d8cfff35.chunk.css.map": "/https//gnbarzol.github.io/Redux-GraphQL/static/css/main.d8cfff35.chunk.css.map",
-    "static/js/2.ab24bad5.chunk.js.LICENSE.txt": "/https//gnbarzol.github.io/Redux-GraphQL/static/js/2.ab24bad5.chunk.js.LICENSE.txt",
-    "static/media/font-awesome.css": "/https//gnbarzol.github.io/Redux-GraphQL/static/media/fontawesome-webfont.fee66e71.woff"
+    "main.css": "/Redux-GraphQL/static/css/main.d8cfff35.chunk.css",
+    "main.js": "/Redux-GraphQL/static/js/main.92f343b1.chunk.js",
+    "main.js.map": "/Redux-GraphQL/static/js/main.92f343b1.chunk.js.map",
+    "runtime-main.js": "/Redux-GraphQL/static/js/runtime-main.b445fce9.js",
+    "runtime-main.js.map": "/Redux-GraphQL/static/js/runtime-main.b445fce9.js.map",
+    "static/css/2.d4514d5f.chunk.css": "/Redux-GraphQL/static/css/2.d4514d5f.chunk.css",
+    "static/js/2.2efed55c.chunk.js": "/Redux-GraphQL/static/js/2.2efed55c.chunk.js",
+    "static/js/2.2efed55c.chunk.js.map": "/Redux-GraphQL/static/js/2.2efed55c.chunk.js.map",
+    "index.html": "/Redux-GraphQL/index.html",
+    "precache-manifest.55fbfa4748e40e63ed042b7b4a795e8e.js": "/Redux-GraphQL/precache-manifest.55fbfa4748e40e63ed042b7b4a795e8e.js",
+    "service-worker.js": "/Redux-GraphQL/service-worker.js",
+    "static/css/2.d4514d5f.chunk.css.map": "/Redux-GraphQL/static/css/2.d4514d5f.chunk.css.map",
+    "static/css/main.d8cfff35.chunk.css.map": "/Redux-GraphQL/static/css/main.d8cfff35.chunk.css.map",
+    "static/js/2.2efed55c.chunk.js.LICENSE.txt": "/Redux-GraphQL/static/js/2.2efed55c.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.css": "/Redux-GraphQL/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.37c450be.js",
-    "static/css/2.54693e18.chunk.css",
-    "static/js/2.ab24bad5.chunk.js",
+    "static/js/runtime-main.b445fce9.js",
+    "static/css/2.d4514d5f.chunk.css",
+    "static/js/2.2efed55c.chunk.js",
     "static/css/main.d8cfff35.chunk.css",
-    "static/js/main.8baeb4c0.chunk.js"
+    "static/js/main.92f343b1.chunk.js"
   ]
 }
