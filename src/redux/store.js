@@ -1,7 +1,7 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'; //Para hacer consumos al backend
 import userReducer, {restoreSessionAction} from './userDuck'; //Como esta export default le puedo poner cualquier nombre, en este caso userReducer
-import charsReducer, {getCharactersAction, restoreFavsAction} from './charsDuck';
+import charsReducer, { restoreFavsAction} from './charsDuck';
 
 //Para tener un solo reducer que sera la combinacion de muchos
 let roorReducer = combineReducers({
