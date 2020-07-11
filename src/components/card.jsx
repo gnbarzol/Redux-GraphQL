@@ -13,7 +13,7 @@ const onClick = (text) => {
 
 const Card = ({name, image, rightClick, leftClick, fav}) => {
     return (
-        <div className='container'>
+        <div className='container-card'>
             <div className='card'>
                 <img alt="rick" src={image} />
                 <p className='name'>

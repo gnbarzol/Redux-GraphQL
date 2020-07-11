@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {updateFavs} from '../firebase';
 
 // Constanst
 const initialData = {
@@ -66,9 +67,12 @@ export const removeCharacterAction = () => (dispatch, getState) => {
 }
 
 export const addFavoriteAction = () => (dispatch, getState) => {
-    let { array, favorites } = getState().characters;
+    let state = getState();
+    let { array, favorites } = state.characters;
+    let { uid } = state.user;
     let character = array.shift();
     favorites.push(character);
+    updateFavs(favorites, uid);
     dispatch({
         type: ADD_TO_FAVORITE,
         payload: { array: [...array], favorites: [...favorites] },

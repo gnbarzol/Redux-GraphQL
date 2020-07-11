@@ -1,16 +1,16 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDEvQTTSzS7iSqf3fwkObI4NvsDnqYM1o0",
-    authDomain: "login-rickandmorty.firebaseapp.com",
-    databaseURL: "https://login-rickandmorty.firebaseio.com",
-    projectId: "login-rickandmorty",
-    storageBucket: "login-rickandmorty.appspot.com",
-    messagingSenderId: "854150206119",
-    appId: "1:854150206119:web:7119727153843023b38182",
-    measurementId: "G-NC71WTK6FV"
-  };
+  apiKey: "AIzaSyCISUSaUd8qPfZQaznVtR65JbqkKFTRT0E",
+  authDomain: "rickandmorty-63a4a.firebaseapp.com",
+  databaseURL: "https://rickandmorty-63a4a.firebaseio.com",
+  projectId: "rickandmorty-63a4a",
+  storageBucket: "rickandmorty-63a4a.appspot.com",
+  messagingSenderId: "964947428142",
+  appId: "1:964947428142:web:04458daa1e0b5f906870bf"
+};
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -22,4 +22,10 @@ export const loginWithGoogle = () => {
 
 export const signOutGoogle = () => {
   firebase.auth().signOut();
+}
+
+let db = firebase.firestore().collection('favs');
+
+export const updateFavs = (array, uid) => {
+  return db.doc(uid).set({array}); //set debe recibir un objeto
 }
